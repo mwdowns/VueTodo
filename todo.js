@@ -51,6 +51,7 @@ var todolist = new Vue({
                 this.list = this.todoNotebook[0].list;
                 this.listTitle = this.todoNotebook[0].listName;
             } else {
+                console.log('no lists in TodoNotebook');
                 this.list = this.list;
                 this.listTitle = '';
                 this.emptyTodoNotebook = true;
