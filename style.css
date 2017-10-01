@@ -1,0 +1,13 @@
+.done {
+    color: red;
+    text-decoration: line-through;
+}
+
+.notdone {
+    color: green;
+}
+
+.finalmessage {
+    color: red;
+}
+
