@@ -16,9 +16,9 @@ var getNewID = function(array) {
     return newid;
 };
 
-const Hello = {template: '<div>HEYO</div>'};
+// const Hello = {template: '<div>HEYO</div>'};
 
-const routes = [{path: '/hello', component: Hello}];
+const routes = [{path: '/list/:id', name: 'TodoList', component: TodoList}];
 
 const router = new VueRouter({
     routes
@@ -40,7 +40,6 @@ var todolist = new Vue({
         listTitle: '',
         newtitle: '',
         newTitleWarning: false,
-        newTitleButtonMessage: 'Create list title',
         newitem: '',
         // Change each of these to blahBlahToggle and change thier calls in the code
         newList: false,
@@ -93,21 +92,19 @@ var todolist = new Vue({
                 });
                 if (titleArray.indexOf(this.newtitle) != -1) {
                     console.log('warning part');
+                    console.log(this.newTitleWarning);
                     this.newTitleWarning = true;
-                    this.newTitleButtonMessage = 'That list name is already in use';
+                    console.log(this.newTitleWarning);
+                    this.duplicateTitleMessage = 'That list name is already in use';
                 } else {
                     console.log('here?');
                     this.newTitleComplete();
                 }
             } else {
-                console.log('or here?');
+                console.log('made new list');
                 this.newTitleComplete();
             }
             
-        },
-        redoTitle: function() {
-            this.newTitleWarning = false;
-            this.newtitle = '';
         },
         newTitleComplete: function() {
             this.listTitle = this.newtitle;
@@ -115,6 +112,7 @@ var todolist = new Vue({
             this.newList = false;
             this.newtitle = '';
             this.emptyTodoNotebook = false;
+            this.newTitleWarning = false;
         },
         // change this addNewTodo
         addnew: function() {

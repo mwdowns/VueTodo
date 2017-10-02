@@ -10,74 +10,76 @@
     <body>
         
         <div id="todolist">
-            <router-link to="/hello">Go to Foo</router-link>
-            <router-view></router-view>
-            <ul>
+            <div
+                v-for="item in todoNotebook"
+                :key="item.id">
+                <router-link :to="`/list/${item.id}`">{{item.listName}}</router-link>
+            </div>
+            
+            <!-- <ul>
                 <todo-item
                     v-for="item in todoNotebook"
                     :todo="item.listName"
                     :key="item.listName"
                     @click.native="chooseList(item)">
                 </todo-item>
-            </ul>
+            </ul> -->
             <template v-if="newList === false">
                 <template v-if="newTitleWarning === false">
-                    <button @click="makeNewTodo">{{newTitleButtonMessage}}</button>
-                </template>
-                <template v-if="newTitleWarning === true">
-                    {{newTitleButtonMessage}}
-                    <button @click="newTitleComplete">Yes</button>
-                    <button @click="redoTitle">No, I'll choose another</button>
-                </template>
-                <!-- <button @click="makeNewTodo">{{newTitleButtonMessage}}</button> -->
-                    <template v-if="emptyTodoNotebook === false">
-                        <h1>{{listTitle}}</h1>
-                        <ol>
-                            <todo-item 
-                                v-for="item in list" 
-                                :todo="item.text" 
-                                :key="item.text"
-                                :class="[{notdone: !item.completed}, {done: item.completed}]"
-                                @click.native="markcompleted(item)">
-                            </todo-item>
-                        </ol>
-                        <p>What else would you like to do today?</p>
-                        <form
-                            @submit.prevent="addnew">
-                            <input 
-                                v-model="newitem">
-                            <button>add item</button>
-                        </form>
-                        
-                        <template v-if="removeCheck === false">
-                            <button
-                                @click="removecheck">
-                                {{removeButtonMessage}}
-                            </button>
-                        </template>
-                        <template v-else>
-                            <button
-                                @click="removecompleted"
-                                :class="{finalmessage: removeCheck}">
-                                {{removeButtonMessage}}
-                            </button>
-                        </template><br>
-                        <template v-if="removeListCheckToggle === false">
-                            <button
-                                @click="removeListCheck">
-                                {{removeListButtonMessage}}
-                            </button>
-                        </template>
-                        <template v-else>
-                            <button
-                                @click="removeList"
-                                :class="{finalmessage: removeListCheck}">
-                                {{removeListButtonMessage}}
-                            </button>
-                        </template>
+                    <button @click="makeNewTodo">Create new Todo List</button>
+                </template> 
+                <router-view></router-view>
+                <template v-if="emptyTodoNotebook === false">
+                    <h1>{{listTitle}}</h1>
+                    <ol>
+                        <todo-item 
+                            v-for="item in list" 
+                            :todo="item.text" 
+                            :key="item.text"
+                            :class="[{notdone: !item.completed}, {done: item.completed}]"
+                            @click.native="markcompleted(item)">
+                        </todo-item>
+                    </ol>
+                    <p>What else would you like to do today?</p>
+                    <form
+                        @submit.prevent="addnew">
+                        <input 
+                            v-model="newitem">
+                        <button>add item</button>
+                    </form>
+                    
+                    <template v-if="removeCheck === false">
+                        <button
+                            @click="removecheck">
+                            {{removeButtonMessage}}
+                        </button>
                     </template>
+                    <template v-else>
+                        <button
+                            @click="removecompleted"
+                            :class="{finalmessage: removeCheck}">
+                            {{removeButtonMessage}}
+                        </button>
+                    </template><br>
+                    <template v-if="removeListCheckToggle === false">
+                        <button
+                            @click="removeListCheck">
+                            {{removeListButtonMessage}}
+                        </button>
+                    </template>
+                    <template v-else>
+                        <button
+                            @click="removeList"
+                            :class="{finalmessage: removeListCheck}">
+                            {{removeListButtonMessage}}
+                        </button>
+                    </template>
+                </template>
             </template>
             <template v-else>
+                <template v-if="newTitleWarning === true">
+                    <p style="color: red">{{duplicateTitleMessage}}</p>
+                </template>
                 <form
                     @submit.prevent="newTitle">
                     <input 
