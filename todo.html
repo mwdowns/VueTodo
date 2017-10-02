@@ -10,25 +10,18 @@
     <body>
         
         <div id="todolist">
-            <div
-                v-for="item in todoNotebook"
-                :key="item.id">
-                <router-link :to="`/list/${item.id}`">{{item.listName}}</router-link>
-            </div>
-            
-            <!-- <ul>
+            <ul>
                 <todo-item
                     v-for="item in todoNotebook"
                     :todo="item.listName"
                     :key="item.listName"
                     @click.native="chooseList(item)">
                 </todo-item>
-            </ul> -->
+            </ul>
             <template v-if="newList === false">
                 <template v-if="newTitleWarning === false">
                     <button @click="makeNewTodo">Create new Todo List</button>
                 </template> 
-                <router-view></router-view>
                 <template v-if="emptyTodoNotebook === false">
                     <h1>{{listTitle}}</h1>
                     <ol>

@@ -4,6 +4,8 @@ var list = [
     {id: 2, text: 'Build something great', completed: false}
 ];
 
+
+
 // var todoNotebook = [{id: 0, listName: "My List", list: list}];
 
 var getNewID = function(array) {
@@ -16,14 +18,6 @@ var getNewID = function(array) {
     return newid;
 };
 
-// const Hello = {template: '<div>HEYO</div>'};
-
-const routes = [{path: '/list/:id', name: 'TodoList', component: TodoList}];
-
-const router = new VueRouter({
-    routes
-});
-
 Vue.component('todo-item', {
     props: ['todo'],
     template: '<li>{{todo}}</li>'
@@ -31,7 +25,6 @@ Vue.component('todo-item', {
 
 var todolist = new Vue({
     el: '#todolist',
-    router,
     data: {
         // change this to listNotebook
         todoNotebook: typeof todoNotebook != 'undefined' ? todoNotebook : [],
