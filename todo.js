@@ -16,6 +16,14 @@ var getNewID = function(array) {
     return newid;
 };
 
+const Hello = {template: '<div>HEYO</div>'};
+
+const routes = [{path: '/hello', component: Hello}];
+
+const router = new VueRouter({
+    routes
+});
+
 Vue.component('todo-item', {
     props: ['todo'],
     template: '<li>{{todo}}</li>'
@@ -23,6 +31,7 @@ Vue.component('todo-item', {
 
 var todolist = new Vue({
     el: '#todolist',
+    router,
     data: {
         // change this to listNotebook
         todoNotebook: typeof todoNotebook != 'undefined' ? todoNotebook : [],
@@ -173,7 +182,7 @@ var todolist = new Vue({
     beforeMount() {
         this.getList();
     }
-});
+}).$mount('#todolist');
 
 // todolist.$watch('listLen', function(newValue, oldValue) {
 //     console.log('something changed');

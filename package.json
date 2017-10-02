@@ -17,7 +17,5 @@
   },
   "homepage": "https://github.com/mwdowns/VueTodo#readme",
   "dependencies": {
-    "vue": "^2.4.4",
-    "vue-router": "^2.7.0"
   }
 }

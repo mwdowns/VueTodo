@@ -4,11 +4,14 @@
         <meta charset="utf-8">
         <title>Hello</title>
         <link type="text/css" rel="stylesheet" href="style.css"/>
-        <!-- <script src="https://unpkg.com/vue"></script>
-        <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script> -->
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     </head>
     <body>
+        
         <div id="todolist">
+            <router-link to="/hello">Go to Foo</router-link>
+            <router-view></router-view>
             <ul>
                 <todo-item
                     v-for="item in todoNotebook"
